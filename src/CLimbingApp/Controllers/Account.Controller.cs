@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using ClimbingApp.Models;
 using ClimbingApp.Models.AccountViewModels;
 using ClimbingApp.Services;
+using CLimbingApp.Controllers;
 
 namespace AuthDemo.Controllers
 {
