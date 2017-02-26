@@ -1,0 +1,58 @@
+﻿<div class="container">
+    <div class="col-md-6">
+        <div class="page-header">
+            <h3>
+                Browse my favorite climbing areas<br />
+                <small>click a location to explore the routes</small>
+            </h3>
+        </div>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    <input type="text" placeholder="Route Name" ng-model="vm.newRoute.name" />
+                    <input type="text" placeholder="Grade" ng-model="vm.newRoute.grade" />
+                    <input type="text" placeholder="Description" ng-model="vm.newRoute.description" />
+                    <select ng-model="vm.newRoute.locationId">
+                        <option ng-repeat="location in vm.locations" value="{{location.id}}">{{location.name}}</option>
+                    </select>
+                    <button class="btn btn-primary" ng-click="vm.saveRoute()">
+                        save new movie
+                    </button>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat-start="location in vm.locations track by $index" data-toggle="collapse" data-target="#{{$index}}" class="accordion-toggle">
+                <td>{{location.name}}</td>
+            </tr>
+            <tr ng-repeat-end>
+                <td class="hiddenRow">
+                    <div class="accordian-body collapse" id="{{$index}}">
+                        <table class="table table-striped">
+                            <tr ng-repeat="route in location.route">
+                                <td class="name">{{route.name}}</td>
+                                <td class="grade">{{route.grade}}</td>
+                                <td class="desc">{{route.description}}</td>
+                                <td class="boolz">{{route.wasClimbed}}</td>
+                                <td>
+                                    <button class="btn btn-success" ng-click="vm.sendIt(route)">
+                                        climbed?
+                                    </button>
+                                    <button class="btn btn-primary" ng-click="vm.edit(route)">
+                                        edit
+                                    </button>
+                                    <button class="btn btn-danger" ng-click="vm.deleteRoute(route.id)">
+                                        delete
+                                    </button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+

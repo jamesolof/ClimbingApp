@@ -1,0 +1,48 @@
+﻿<h1>Registration Page</h1>
+
+<form class="form-horizontal" ng-submit="vm.registerUser()" name="regform" novalidate>
+    <h4>Create a new account.</h4>
+    <hr/>
+    <div class="form-group">
+        <label id="regemail" class="col-md-2 control-label">Email</label>
+        <div class="col-md-10">
+            <input id="regemail" name="email" class="form-control" type="email" ng-model="vm.formData.email" ng-required="true"/>
+            <span class="text-danger" 
+                  ng-show="regform.email.$touched && regform.email.$error.required">
+                email is required
+            </span>
+            <span class="text-danger"
+                   ng-show="regform.email.$invalid && !regform.email.$pristine">
+                You need to enter a valid email
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label id="regpassword" class="col-md-2 control-label">Password</label>
+        <div class="col-md-10">
+            <input id="regpassword" name="password" class="form-control" type="password" 
+                   ng-model="vm.formData.password" 
+                   ng-required="true"
+                   ng-minlength="8"
+                   ng-pattern="vm.pattern" />
+            <span class="text-danger"
+                  ng-show="regform.password.$touched && regform.password.$error.required">
+                password is required
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label id="regconfirmpassword" class="col-md-2 control-label">Confirm Password</label>
+        <div class="col-md-10">
+            <input id="regconfirmpassword" name="confirmPassword" class="form-control"  type="password"  ng-model="vm.formData.confirmPassword" ng-required="true"/>
+            <span class="text-danger" ng-show="regform.confirmPassword.$touched && regform.confirmPassword.$error.required">
+                Need to confirm your password
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="submit" class="btn btn-default">Register</button>
+        </div>
+    </div>
+</form>

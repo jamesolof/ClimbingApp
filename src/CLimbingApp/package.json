@@ -1,0 +1,19 @@
+{
+  "name": "climbingapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "james olof",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/angular": "^1.6.4",
+    "@types/angular-ui-router": "1.1.36",
+    "@types/angular-resource": "1.5.8",
+    "@types/underscore": "1.7.36",
+    "@types/angular-ui-bootstrap": "0.13.39"
+  }
+}
