@@ -68,7 +68,7 @@ var ClimbingApp;
             };
             UserService.prototype.logOut = function () {
                 var _this = this;
-                this.$http.post('api/account/logout', {
+                this.$http.post('api/account/logoff', {
                     cache: false
                 })
                     .then(function (response) {

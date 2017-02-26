@@ -37,13 +37,11 @@
                                 <td class="desc">{{route.description}}</td>
                                 <td class="boolz">{{route.wasClimbed}}</td>
                                 <td>
-                                    <button class="btn btn-success" ng-click="vm.sendIt(route)">
+                                    <button ng-if="vm.canEdit()" class="btn btn-success" ng-click="vm.sendIt(route)">
                                         climbed?
                                     </button>
-                                    <button class="btn btn-primary" ng-click="vm.edit(route)">
-                                        edit
-                                    </button>
-                                    <button class="btn btn-danger" ng-click="vm.deleteRoute(route.id)">
+                                
+                                    <button ng-if="vm.canDelete()" class="btn btn-danger" ng-click="vm.deleteRoute(route.id)">
                                         delete
                                     </button>
                                 </td>

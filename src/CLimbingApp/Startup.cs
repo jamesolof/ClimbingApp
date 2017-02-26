@@ -12,6 +12,8 @@ using ClimbingApp.Data;
 using ClimbingApp.Repositories;
 using ClimbingApp.Services;
 using AutoMapper;
+using ClimbingApp.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace CLimbingApp
 {
@@ -32,6 +34,11 @@ namespace CLimbingApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+        .AddEntityFrameworkStores<ApplicationDbContext>()
+        .AddDefaultTokenProviders();
 
             //set up application dbcontext
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -59,6 +66,10 @@ namespace CLimbingApp
                 options.SignIn.RequireConfirmedPhoneNumber = false;
             });
 
+            services.AddTransient<IEmailSender, AuthMessageSender>();
+            services.AddTransient<ISmsSender, AuthMessageSender>();
+
+
 
 
 
@@ -69,6 +80,10 @@ namespace CLimbingApp
             });
             services.AddSingleton<IMapper>(sp => config.CreateMapper());
         }
+
+    
+
+    
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
@@ -85,6 +100,9 @@ namespace CLimbingApp
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
+            app.UseIdentity();
+
 
             app.UseStaticFiles();
             app.UseMvc(routes =>

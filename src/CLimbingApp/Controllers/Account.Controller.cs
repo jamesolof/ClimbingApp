@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -11,10 +10,10 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using ClimbingApp.Models;
 using ClimbingApp.Models.AccountViewModels;
-using ClimbingApp.Services;
 using CLimbingApp.Controllers;
+using ClimbingApp.Services;
 
-namespace AuthDemo.Controllers
+namespace ClimbingApp.Controllers
 {
     [Authorize]
     [Route("api/[controller]")]
@@ -22,15 +21,21 @@ namespace AuthDemo.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly IEmailSender _emailSender;
+        private readonly ISmsSender _smsSender;
         private readonly ILogger _logger;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
+            IEmailSender emailSender,
+            ISmsSender smsSender,
             ILoggerFactory loggerFactory)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _emailSender = emailSender;
+            _smsSender = smsSender;
             _logger = loggerFactory.CreateLogger<AccountController>();
         }
 

@@ -5,6 +5,7 @@ var ClimbingApp;
         var UserModel = (function () {
             function UserModel() {
                 this.userName = '';
+                this.isAdmin = false;
             }
             UserModel.getAnonymousUser = function () {
                 var user = new Models.UserModel();

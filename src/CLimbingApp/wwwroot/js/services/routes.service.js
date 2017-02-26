@@ -29,11 +29,27 @@ var ClimbingApp;
                 return this.RoutesResource.query();
             };
             //save a new route
-            RoutesService.prototype.saveRoute = function (movie) {
-                return this.$http.post("api/routes/", movie)
+            RoutesService.prototype.saveRoute = function (route) {
+                return this.$http.post("api/routes/", route)
                     .then(function (response) {
                     return response.data;
                 });
+            };
+            RoutesService.prototype.climbRoute = function (route) {
+                if (route.wasClimbed) {
+                    route.wasClimbed = false;
+                    return this.$http.put("api/routes", route)
+                        .then(function (response) {
+                        return response.data;
+                    });
+                }
+                if (!route.wasClimbed) {
+                    route.wasClimbed = true;
+                    return this.$http.put("api/routes", route)
+                        .then(function (response) {
+                        return response.data;
+                    });
+                }
             };
             RoutesService.prototype.deleteRoute = function (id) {
                 debugger;

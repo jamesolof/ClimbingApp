@@ -75,7 +75,7 @@
         }
 
         public logOut(): void {
-            this.$http.post<Models.UserModel>('api/account/logout', <ng.IRequestShortcutConfig>{
+            this.$http.post<Models.UserModel>('api/account/logoff', <ng.IRequestShortcutConfig>{
                 cache: false
             })
                 .then((response) => {

@@ -33,13 +33,30 @@
         }
 
         //save a new route
-        public saveRoute(movie: Models.Route): ng.IPromise<Models.Route> {
+        public saveRoute(route: Models.Route): ng.IPromise<Models.Route> {
 
-            return this.$http.post<Models.Route>(`api/routes/`, movie)
+            return this.$http.post<Models.Route>(`api/routes/`, route)
                 .then((response) => {
                     return response.data
                 });
 
+        }
+
+        public climbRoute(route: Models.Route) {
+            if (route.wasClimbed) {
+                route.wasClimbed = false;
+                return this.$http.put<Models.Route>(`api/routes`, route)
+                    .then((response) => {
+                        return response.data
+                    });
+            }
+            if (!route.wasClimbed) {
+                route.wasClimbed = true;
+                return this.$http.put<Models.Route>(`api/routes`, route)
+                    .then((response) => {
+                        return response.data
+                    });
+            }
         }
 
         public deleteRoute(id: number): void {
